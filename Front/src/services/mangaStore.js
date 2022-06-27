@@ -18,9 +18,9 @@ async function getMangasList() {
 }
 
 async function getCoverByMangaId(mangaId) {
-    const reponse = await axios.get(`https://api.mangadex.org/cover/${{mangaId}}`).then(res => res).catch(err => err)
+    const response = await axios.get(`https://api.mangadex.org/cover/${mangaId}`).then(res => res).catch(err => err);
     const coverFileName = response.attributes.fileName;
-    const coverLink = `https://api.mangadex.org/${{mangaId}}/${{coverFileName}}`
+    const coverLink = `https://mangadex.org/covers/${mangaId}/${coverFileName}`;
     return coverLink;
 }
 
