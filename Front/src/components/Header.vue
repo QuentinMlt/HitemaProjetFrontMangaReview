@@ -5,28 +5,37 @@
 <template>
   
   
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <h3>MangaReview</h3>
-    <div class="collapse navbar-collapse ms-5" id="navbarNav">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbarNav">
+    <h3 class="ms-5 mt-1">MangaReview</h3>
+    <div class="collapse navbar-collapse ms-5" >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
+          <router-link class="nav-link" :to="{name: 'home'}"><b>Home</b></router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'manga'}">Manga</router-link>
+          <router-link class="nav-link" :to="{name: 'manga'}"><b>Manga</b></router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'anime'}">Anime</router-link>
+          <router-link class="nav-link" :to="{name: 'anime'}"><b>Anime</b></router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'login'}">Sign in</router-link>
+          <router-link class="nav-link" :to="{name: 'login'}"><b>Sign in</b></router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'register'}">Sign up</router-link>
+          <router-link class="nav-link" :to="{name: 'register'}"><b>Sign up</b></router-link>
         </li>
       </ul>
     </div>
   </nav>
 </template>
 
-<style>@import 'bootstrap/dist/css/bootstrap.min.css';</style>
+<style>
+#navbarNav {
+    background : linear-gradient(90deg,#04c 0,#17a2b8);
+    color: white;
+}
+
+.navbar-nav {
+  color: white;
+} 
+</style>
