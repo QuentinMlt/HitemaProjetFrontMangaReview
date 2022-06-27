@@ -1,26 +1,43 @@
 <script setup>
 import { ref } from 'vue';
+import {useMangaStore} from "@/services/mangaStore";
+
+const {getMangasList, getCoverByMangaId} = useMangaStore();
 
 
-const listDObjets =ref([
-  {id:0, name:"Alice", image:"https://cdn.mangakawaii.pics/uploads/manga/nano-machine/cover/cover_250x350.jpg?v=1655847690"},
-  {id:1, name:"Bob", image:"https://cdn.mangakawaii.pics/uploads/manga/nano-machine/cover/cover_250x350.jpg?v=1655847690"},
-  {id:2, name:"Arthur", image:"https://cdn.mangakawaii.pics/uploads/manga/nano-machine/cover/cover_250x350.jpg?v=1655847690"},
-  {id:2, name:"Ruben", image:"https://cdn.mangakawaii.pics/uploads/manga/nano-machine/cover/cover_250x350.jpg?v=1655847690"}
-])
+
+async function getAll() {
+    let list =  await getMangasList();
+    return list.data;
+}
+
+async function getImg(mangaId) {
+    const coverLink =  await getCoverByMangaId(mangaId);
+    return coverLink;
+}
+
+let mangasList = await getAll();
+console.log(mangasList)
+let newArray = mangasList[0].relationships.filter(function (el)
+{
+  return el.relationships == "cover_art";
+});
+
+console.log(newArray)
+
+
 
 </script>
 
 <template>
-    <div class="rounded" id="container">
-        <h2 id="title">Liste des mangas</h2>
-        <p v-for="i in tableau">{{i}}</p>
-        <div class="row" id="listContainer">
-            <div v-for="monObjet in listDObjets" :key="monObjet.id" class="col-4 mt-3">
+    <div class="rounded pt-5 ps-5" id="container">
+        <h2 id="title">Mangas List</h2><br>
+        <div class="row row-cols-6" id="listContainer"> <!-- Display -->
+            <div v-for="manga in mangasList" :key="manga.id" class="col mt-3">
                 <div class="card bg-dark text-white thumbnail">
-                    <img :src="monObjet.image" class="card-img" >
+                    <img :src="getImg(manga.id)" class="card-img" >
                     <div class="card-img-overlay">
-                        <h5 class="card-title">{{monObjet.name}}</h5>
+                        <h5 class="card-title">{{manga.title.en}}</h5>
                     </div>
                 </div>
             </div>
@@ -31,16 +48,15 @@ const listDObjets =ref([
 
 <style>
 #container {
-    width: 550px;
+   
     background: white;
+    box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, .5);
 }
 #title {
     color: orange;
 }
 
-#listContainer {
-    width: 500px;
-}
+
 
 .thumbnail {
     width: 150px;

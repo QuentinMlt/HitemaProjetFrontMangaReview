@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 function useMangaStore(){
-    return {getMangasList, getCoverByMangaId};
+    return {getMangasList, getCover};
 }
 async function getMangasList() {
     
@@ -17,7 +17,7 @@ async function getMangasList() {
     
 }
 
-async function getCoverByMangaId(mangaId) {
+async function getCover(mangaId) {
     const response = await axios.get(`https://api.mangadex.org/cover/${mangaId}`).then(res => res).catch(err => err);
     const coverFileName = response.attributes.fileName;
     const coverLink = `https://mangadex.org/covers/${mangaId}/${coverFileName}`;
