@@ -9,9 +9,9 @@ import Account from "@/components/Account.vue";
 import Dashboard from "@/components/Dashboard.vue";
 
 //Products
-import MangasList from "@/components/MangasList.vue";
 import MangaById from "@/components/MangaById.vue";
 import AnimesList from "@/components/AnimesList.vue";
+import MangasList from "@/components/MangasList.vue";
 import AnimeById from "@/components/AnimeById.vue";
 
 
@@ -48,14 +48,14 @@ const router = createRouter({
             component: Dashboard,
         },
         {
-            path: "/mangas",
-            name: 'manga',
-            component: MangasList,
-        },
-        {
             path: "/animes",
             name: 'anime',
             component: AnimesList,
+        },
+        {
+            path: "/manga",
+            name: 'manga',
+            component: MangasList,
         },
         {
             path: "/mangas/:id",
