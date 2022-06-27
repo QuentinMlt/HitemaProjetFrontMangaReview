@@ -5,25 +5,25 @@ import {useMangaStore} from "@/services/mangaStore";
 const {getMangasList, getCoverByMangaId} = useMangaStore();
 
 
-
+// Get mangas List
 async function getAll() {
     let list =  await getMangasList();
     return list.data;
 }
 
-async function getImg(mangaId) {
-    const coverLink =  await getCoverByMangaId(mangaId);
+//get Img by coverId
+async function getImg(coverId) {
+    const coverLink =  await getCover(coverId);
     return coverLink;
 }
 
 let mangasList = await getAll();
-console.log(mangasList)
 let newArray = mangasList[0].relationships.filter(function (el)
 {
-  return el.relationships == "cover_art";
+  return el.type == "cover_art";
 });
-
-console.log(newArray)
+let test = await getImg(newArray[0].id);
+console.log(newArray[0].id)
 
 
 
