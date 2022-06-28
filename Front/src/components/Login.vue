@@ -14,7 +14,7 @@ export default {
     }
   },
 
-  // resultat en sortie apres avoir submit le formulaire
+  //resultat en sortie apres avoir submit le formulaire
   methods: {
     submitForm() {
       this.v$.$validate()
@@ -33,7 +33,16 @@ export default {
   validations(){
     return {
       email: {required, email},
-      password: {required, minLength: minLength(4), maxLength: maxLength(20)}
+      password: {
+        required, 
+        minLength: minLength(4), 
+        maxLength: maxLength(20),
+        containsUppercase: function(value) {
+        return /[A-Z]/.test(value)
+        },
+        containsNumber: function(value) {
+        return /[0-9]/.test(value)},
+        }
     }
   }
 
