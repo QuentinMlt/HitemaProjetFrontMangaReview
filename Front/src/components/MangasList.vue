@@ -1,43 +1,38 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue'
 import {useMangaStore} from "@/services/mangaStore";
 
-const {getMangasList, getCoverByMangaId} = useMangaStore();
+const {getMangasList, getCover} = useMangaStore();
 
+const mangasList = ref([]);
+
+onMounted(async () => {
+  let mangasData = await getAll();
+  for(let i = 0; i < mangasData.length; i++) {
+    let newArray = mangasData[i].relationships.filter(function (el) { return el.type == "cover_art"; });
+    mangasData[i]['lien'] = await getCover(mangasData[i]['id'], newArray[0].id);
+  }
+
+  mangasList.value = mangasData;
+})
 
 // Get mangas List
 async function getAll() {
-    let list =  await getMangasList();
+    let list =  await getMangasList()
     return list.data;
 }
-
-//get Img by coverId
-async function getImg(coverId) {
-    const coverLink =  await getCover(coverId);
-    return coverLink;
-}
-
-let mangasList = await getAll();
-let newArray = mangasList[0].relationships.filter(function (el)
-{
-  return el.type == "cover_art";
-});
-let test = await getImg(newArray[0].id);
-console.log(newArray[0].id)
-
-
 
 </script>
 
 <template>
     <div class="rounded pt-5 ps-5" id="container">
         <h2 id="title">Mangas List</h2><br>
-        <div class="row row-cols-6" id="listContainer"> <!-- Display -->
-            <div v-for="manga in mangasList" :key="manga.id" class="col mt-3">
+        <div class="row row-cols-3" id="listContainer"> <!-- Display -->
+            <div v-for="(manga, index) in mangasList" :key="manga.id" class="col mt-3">
                 <div class="card bg-dark text-white thumbnail">
-                    <img :src="getImg(manga.id)" class="card-img" >
+                    <img :src="manga.lien" class="card-img" >
                     <div class="card-img-overlay">
-                        <h5 class="card-title">{{manga.title.en}}</h5>
+                        <h5 class="card-title">{{manga.attributes.title.en}}</h5>
                     </div>
                 </div>
             </div>
