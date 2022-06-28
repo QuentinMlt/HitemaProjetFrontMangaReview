@@ -2,53 +2,65 @@
 </script>
 
 <template>
-<header class="nav-header">
-<div class="container navbar-container">
-<nav class="navbar navbar-dark" id="navbarNav">
-    <img src="@/assets/MangaReviewLogo.png" alt="logo">
-    <div class="form-body">
-         <form action="">
+  <header class="nav-header">
+    <div class="container navbar-container">
+      <nav class="navbar navbar-dark" id="navbarNav">
+        <img src="@/assets/MangaReviewLogo.png" alt="logo">
+        <div class="form-body">
+          <form action="">
             <input class="form-input" type="text">
             <span class="dropdown bootstrap-select show">
-                <select class="selectpicker form-select-input" id="search_type" name="search_type" data-style="btn-default" tabindex="null">
-                        <option value="manga">Manga</option>
-                        <option value="anime">Anime</option>
-                </select>
+              <select class="selectpicker form-select-input" id="search_type" name="search_type"
+                data-style="btn-default" tabindex="null">
+                <option value="manga">Manga</option>
+                <option value="anime">Anime</option>
+              </select>
             </span>
             <button type="submit" class="form-button">search</button>
-         </form>
+          </form>
+        </div>
+      </nav>
     </div>
-  </nav>
-</div>
-</header>
-<div class="nav-route">
+  </header>
+  <div class="nav-route">
     <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navbarNav">
-  <a class="navbar-brand" href="#"><router-link class="navbar-brand" :to="{name: 'home'}"><b>Home</b></router-link></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'manga'}"><b>Manga</b></router-link></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'anime'}"><b>Anime</b></router-link></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'login'}"><b>Sign in</b></router-link></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link></a>
-      </li>
-    </ul>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+          <router-link class="navbar-brand" :to="{name: 'home'}"><b>Home</b></router-link>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link">
+                <router-link class="navbar-brand" :to="{name: 'manga'}"><b>Manga</b></router-link>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <router-link class="navbar-brand" :to="{name: 'anime'}"><b>Anime</b></router-link>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <router-link class="navbar-brand" :to="{name: 'login'}"><b>Sign in</b></router-link>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   </div>
-</nav>
-</div>
-</div>
 
-  
+
 </template>
 
 <style>
