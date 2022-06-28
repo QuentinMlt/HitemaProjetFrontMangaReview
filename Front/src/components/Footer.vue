@@ -3,37 +3,12 @@
 <footer class="bg-dark text-center text-white">
   <!-- Grid container -->
   <div class="container p-4">
-    <!-- Section: Social media -->
     <section class="mb-4">
-      <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
-
-      <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
-
-      <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-google"></i
-      ></a>
-
-      <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
-
-      <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
-
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-github"></i
-      ></a>
+      <a class="btn btn-floating m-1" href="https://github.com/" role="button"><img class="git" id="github" src="https://logos-world.net/wp-content/uploads/2020/11/GitHub-Emblem.png"/></a>
+      <!-- GitLab -->
+      <a class="btn btn-floating m-1" href="https://gitlab.com/" role="button"><img class="git" src="https://about.gitlab.com/images/press/logo/png/gitlab-logo-400.png"/></a>
+
     </section>
     <!-- Section: Social media -->
 
@@ -41,9 +16,7 @@
     <!-- Section: Text -->
     <section class="mb-4">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-        eum harum corrupti dicta, aliquam sequi voluptate quas.
+        MangaReview allow you to share your opinion about mangas and animes with other people.
       </p>
     </section>
     <!-- Section: Text -->
@@ -52,91 +25,34 @@
     <section class="">
       <!--Grid row-->
       <div class="row">
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
+         <!--Grid column-->
+        <div class="col mb-4 mb-md-0">
+          <router-link :to="{name: 'home'}" class="text-uppercase text-white fw-bold text-decoration-none">Home</router-link>
         </div>
         <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
+         <!--Grid column-->
+        <div class="col mb-4 mb-md-0">
+          <router-link :to="{name: 'manga'}" class="text-uppercase text-white fw-bold text-decoration-none">Mangas</router-link>
         </div>
         <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
+         <!--Grid column-->
+        <div class="col  mb-4 mb-md-0">
+          <router-link :to="{name: 'anime'}" class="text-uppercase text-white fw-bold text-decoration-none">Animes</router-link>
         </div>
         <!--Grid column-->
-
+         <!--Grid column-->
+        <div class="col  mb-4 mb-md-0">
+          <router-link :to="{name: 'register'}" class="text-uppercase text-white fw-bold text-decoration-none">Sign up</router-link>
+        </div>
         <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
+        <!--Grid column-->
+        <div class="col mb-4 mb-md-0">
+          <router-link :to="{name: 'login'}" class="text-uppercase text-white fw-bold text-decoration-none">Sign in</router-link>
         </div>
         <!--Grid column-->
       </div>
       <!--Grid row-->
+      
     </section>
     <!-- Section: Links -->
   </div>
@@ -144,10 +60,30 @@
 
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    © 2022 Copyright:
+    <router-link :to="{name: 'home'}" class="text-white text-decoration-none fw-bold">MangaReview</router-link>
   </div>
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
 </template>
+
+<style>
+footer {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 20, 0.8)), url('https://w.wallha.com/ws/12/4Bxf9DFw.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+  font-variant-caps: all-small-caps;
+  font-variant: bold;
+}
+
+.git {
+  width: 150px;
+  filter: brightness(0) invert(1);
+}
+#github {
+  width:120px;
+}
+</style>
