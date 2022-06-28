@@ -25,10 +25,10 @@ async function getAll() {
 </script>
 
 <template>
-    <div class="rounded pt-5 ps-5" id="container">
+    <div class="rounded pt-5 ps-5 pe-5" id="container">
         <h2 id="title">Mangas List</h2><br>
-        <div class="row row-cols-3" id="listContainer"> <!-- Display -->
-            <div v-for="(manga, index) in mangasList" :key="manga.id" class="col mt-3">
+        <div class="row" id="listContainer"> <!-- Display -->
+            <div v-for="(manga, index) in mangasList" :key="manga.id" class="col-sm-3 mt-3">
                 <div class="card bg-dark text-white thumbnail">
                     <img :src="manga.lien" class="card-img" >
                     <div class="card-img-overlay">
@@ -43,19 +43,12 @@ async function getAll() {
 
 <style>
 #container {
-   
+    max-width: 800px;
     background: white;
     box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, .5);
 }
 #title {
     color: orange;
-}
-
-
-
-.thumbnail {
-    width: 150px;
-    
 }
 
 .card-img-overlay {
