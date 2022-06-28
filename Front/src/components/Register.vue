@@ -71,7 +71,7 @@ export default {
           <input type="password" v-model="password" class="form-control">
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button @click="submitForm()" class="btn btn-primary">Sign in</button>
         </div>
       </form>
 </div>
