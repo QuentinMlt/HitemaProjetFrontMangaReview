@@ -1,7 +1,7 @@
 <script>
 import useValidate from '@vuelidate/core'
-import { required, email, minLength, maxLength } from '@vuelidate/validators'
-import { reactive, computed } from 'vue'
+import { required, email } from '@vuelidate/validators'
+
 
 export default {
 
@@ -33,16 +33,7 @@ export default {
   validations(){
     return {
       email: {required, email},
-      password: {
-        required, 
-        minLength: minLength(4), 
-        maxLength: maxLength(20),
-        containsUppercase: function(value) {
-        return /[A-Z]/.test(value)
-        },
-        containsNumber: function(value) {
-        return /[0-9]/.test(value)},
-        }
+      password: {required}
     }
   }
 
