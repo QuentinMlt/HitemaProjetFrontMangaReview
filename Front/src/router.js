@@ -13,6 +13,8 @@ import MangaById from "@/components/MangaById.vue";
 import AnimesList from "@/components/AnimesList.vue";
 import MangasList from "@/components/MangasList.vue";
 import AnimeById from "@/components/AnimeById.vue";
+import AdminDashboard from "@/components/AdminDashboard.vue";
+
 
 
 
@@ -67,7 +69,24 @@ const router = createRouter({
             name: 'animeById',
             component: AnimeById,
         },
+        {
+            path: "/moderation",
+            name: 'moderation',
+            component: AdminDashboard,
+        },
     ]
+})
+
+
+// ici on gère les accès aux routes
+router.beforeEach((to,from,next) => {
+    const isConnected = localStorage.getItem('token') === null ? false : true
+    const routeNeedLogin =["moderation"]
+    const routeNotNeedLogin = ["login","register","home","anime","manga","mangaById","animeById"]
+    if (routeNeedLogin.includes(to.name) && !isConnected) next({name: 'login'})
+    if (routeNotNeedLogin.includes(to.name) && isConnected) next({name: 'home'})
+   
+    next()
 })
 
 export default router;
