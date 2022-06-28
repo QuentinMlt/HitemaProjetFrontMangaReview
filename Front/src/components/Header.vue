@@ -8,7 +8,7 @@
         <img src="@/assets/MangaReviewLogo.png" alt="logo">
         <div class="form-body">
           <form action="">
-            <input class="form-input" type="text">
+            <input class="form-input" placeholder="Titre de l'oeuvre" type="text">
             <span class="dropdown bootstrap-select show">
               <select class="selectpicker form-select-input" id="search_type" name="search_type"
                 data-style="btn-default" tabindex="null">
@@ -73,7 +73,7 @@ header, .nav-route {
     display: flex;
     position: relative;
     background : rgb(53, 141, 249);
-    max-width: 400px;
+    max-width: 380px;
     max-height: 45px;
     width: 100%;
     height: 100%;
@@ -84,10 +84,15 @@ header, .nav-route {
     height: 45px;
     border: 0px;
     color: white;
+    margin-left: 15px;
     border-right: 1px solid hsla(0,0%,100%,.1);
     outline: none;
+
 }
 
+::placeholder{
+  opacity: 1;
+}
 .navbar-container{
     align-items: center;
     
