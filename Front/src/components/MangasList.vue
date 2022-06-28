@@ -5,7 +5,9 @@ import {useMangaStore} from "@/services/mangaStore";
 const {getMangasList, getCover} = useMangaStore();
 
 const mangasList = ref([]);
+const newMangasList = ref([]);
 const test = ref([])
+
 // on component creation
 onMounted(async () => {
   let mangasData = await getAll();
@@ -15,7 +17,9 @@ onMounted(async () => {
   }
 
   mangasList.value = mangasData.data;
-})
+  newMangasList.value = mangasList.value;
+  console.log(newMangasList.value)
+  })
 
 // Get mangas List
 async function getAll() {
@@ -23,13 +27,40 @@ async function getAll() {
     return list.data;
 }
 
+//filter manga by letter
+async function filterByLetter(letter) {
+    console.log(letter)
+    if(letter == "#") 
+    {
+         newMangasList.value =  mangasList.value;
+    }
+    else {
+         newMangasList.value =  mangasList.value.filter(function (el) {return el.attributes.title.en[0] == letter});
+    }
+
+}
+
+const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
 </script>
 
 <template>
+
+    
+
     <div class="rounded p-5" id="container">
         <h2 id="title">Mangas List</h2><br>
+        <div class="container-sm rounded p-2 section-block">
+            <h5>Categories : </h5>
+            <hr>
+            <ul class="nav nav-fill mt-3">
+                <li  v-for="letter in alphabet" class="nav-item px-sm-0 px-2">
+                    <button class="btn alphabet" @click="filterByLetter(letter)">{{letter}}</button>
+                </li>
+            </ul>
+        </div>
         <div class="row" id="listContainer"> <!-- Display -->
-                <div v-for="(manga, index) in mangasList" :key="manga.id" class="col-sm-3 mt-3">
+                <div v-for="(manga, index) in newMangasList" :key="manga.id" class="col-sm-3 mt-3">
                     <router-link :to="{name: 'mangaById', params: { id: manga.id }}">
                         <div class="card bg-dark text-white thumbnail">
                             <img :src="manga.lien" class="card-img" >
