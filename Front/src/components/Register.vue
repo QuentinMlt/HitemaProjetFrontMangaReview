@@ -56,24 +56,107 @@ export default {
 </script>
 
 <template>
-<div class="container" id ="app">
-    <form class="row g-3">
-        <div class="col-md-6">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" v-model="username" class="form-control" >
+<div class="login-form">    
+    <form>
+		<div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
+    	<h4 class="modal-title">Register to Your New Account</h4>
+        <div class="form-group">
+            <input type="text" class="form-control" v-model="username" placeholder="Username" required="required">
         </div>
-        <div class="col-md-6">
-          <label for="mail"  class="form-label">Mail address</label>
-          <input type="email" v-model="email" class="form-control" placeholder="exemple@mail.fr ">
+        <div class="form-group">
+            <input type="text" class="form-control" v-model="email" placeholder="Email" required="required">
         </div>
-        <div class="col-md-6">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" v-model="password" class="form-control">
+        <div class="form-group">
+            <input type="password" class="form-control" v-model="password" placeholder="Password" required="required">
         </div>
-        <div class="col-12">
-          <button @click="submitForm()" class="btn btn-primary">Sign in</button>
-        </div>
-      </form>
+        <input @click="submitForm()" class="btn btn-primary btn-block btn-lg" value="Login">              
+    </form>			
+    <div class="text-center small">Already have an account? <a><router-link :to="{name: 'login'}"><b>Sign in</b></router-link></a></div>
 </div>
-
 </template>
+
+<style>
+body {
+	color: #999;
+	background: #f5f5f5;
+	font-family: 'Varela Round', sans-serif;
+}
+.form-control {
+	box-shadow: none;
+	border-color: #ddd;
+}
+.form-control:focus {
+	border-color: #4aba70; 
+}
+.login-form {
+	width: 350px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+.login-form form {
+	color: #434343;
+	border-radius: 1px;
+	margin-bottom: 15px;
+	background: #fff;
+	border: 1px solid #f3f3f3;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.login-form h4 {
+	text-align: center;
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+.login-form .avatar {
+	color: #fff;
+	margin: 0 auto 30px;
+	text-align: center;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	z-index: 9;
+	background: rgb(8,100,197);
+	padding: 15px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.login-form .avatar i {
+	font-size: 62px;
+}
+.login-form .form-group {
+	margin-bottom: 20px;
+}
+.login-form .form-control, .login-form .btn {
+	min-height: 40px;
+	border-radius: 2px; 
+	transition: all 0.5s;
+}
+.login-form .close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+.login-form .btn, .login-form .btn:active {
+	background: rgb(8,100,197) !important;
+	border: none;
+	line-height: normal;
+}
+.login-form .btn:hover, .login-form .btn:focus {
+	background: rgb(6,81,164) !important;
+}
+.login-form .checkbox-inline {
+	float: left;
+}
+.login-form input[type="checkbox"] {
+	position: relative;
+	top: 2px;
+}
+.login-form .forgot-link {
+	float: right;
+}
+.login-form .small {
+	font-size: 13px;
+}
+.login-form a {
+	color: rgb(8,100,197);
+}
+</style>
