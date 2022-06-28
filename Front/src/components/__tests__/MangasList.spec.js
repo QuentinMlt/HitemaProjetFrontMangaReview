@@ -17,7 +17,7 @@ describe('MangasList', () => {
     //fake data from API MangaDex
     const mangasList = await getMangasList();
     
-    expect(mangasList.status).toBe(201);
+    expect(mangasList.status).toBe(200);
   })
 
  
