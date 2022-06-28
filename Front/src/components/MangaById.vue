@@ -19,10 +19,10 @@ onMounted( () => {
 
     <div class="container-sm rounded p-5 section-block">
         <div class="row">
-            <div class="col-sm-3 card text-white p-2 thumbnail">
+            <div class="col-sm-3 card text-white p-2 thumbnail"><!-- MANGA IMG -->
                 <img src="https://mangadex.org/covers/a96676e5-8ae2-425e-b549-7f15dd34a6d8/3b736a05-2313-40b4-8af1-94b85b3efc72.jpg.256.jpg" class="card-img">
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8"><!-- MANGA BIO -->
                 <h2>Title</h2>
                 <h3>By Author</h3>
                 <h4>Description :</h4><br>
@@ -35,11 +35,11 @@ onMounted( () => {
         </div>
     </div><br>
 
-    <div class="container-sm rounded p-2 section-block" >
+    <div class="container-sm rounded p-2 section-block" ><!-- REVIEWS SECTIONS -->
         <h3>Reviews Section</h3>
         <div class="ms-3 p-3 section-comment">
             <strong>Your opinion :</strong>
-            <form>
+            <form><!-- ADD COMMENTS & REVIEWS -->
                 <div class="form-group mb-2">
                     <label for="Comments">Comments :</label>
                     <textarea type="text" class="form-control" id="Comments"></textarea>
