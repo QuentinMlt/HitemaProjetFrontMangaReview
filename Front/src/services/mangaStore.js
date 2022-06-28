@@ -12,13 +12,12 @@ async function getMangasList() {
     }
 
 
-    return response.data
+    return response
     
     
 }
 
 async function getCover(mangaId,coverId) {
-    console.log('heyo');
     const coverLink = await axios.get(`https://api.mangadex.org/cover/${coverId}`).then(res => {
         const coverFileName = res.data.data.attributes.fileName;
         //creation du lien de la cover 
