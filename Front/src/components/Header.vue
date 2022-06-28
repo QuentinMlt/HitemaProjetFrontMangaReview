@@ -40,7 +40,7 @@
         <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'login'}"><b>Sign in</b></router-link></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled"><router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link></a>
+        <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link></a>
       </li>
     </ul>
   </div>
