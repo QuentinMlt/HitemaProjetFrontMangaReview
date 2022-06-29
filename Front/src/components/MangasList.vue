@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import {useMangaStore} from "@/services/mangaStore";
 
-const {getMangasList, getCover} = useMangaStore();
+const {getMangasList} = useMangaStore();
 
 const mangasList = ref([]);
 const newMangasList = ref([]);
