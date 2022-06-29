@@ -2,13 +2,18 @@
 import { ref, onMounted } from 'vue'
 import {useRoute} from "vue-router";
 import StarRating from 'vue-star-rating'
+import {useMangaStore} from "@/services/mangaStore";
 
+const {getMangaById} = useMangaStore();
 
+const manga = ref("");
 
-onMounted( () => {
+onMounted( async () => {
     const route = useRoute();
     const mangaId = ref(route.params.id);
     console.log(mangaId.value);
+    manga.value = await getMangaById(mangaId.value);
+    console.log(manga.value)
 })
 
 
@@ -20,13 +25,13 @@ onMounted( () => {
     <div class="container-sm rounded p-5 section-block">
         <div class="row">
             <div class="col-sm-3 card text-white p-2 thumbnail"><!-- MANGA IMG -->
-                <img src="https://mangadex.org/covers/a96676e5-8ae2-425e-b549-7f15dd34a6d8/3b736a05-2313-40b4-8af1-94b85b3efc72.jpg.256.jpg" class="card-img">
+                <img :src="manga.imageUrl" class="card-img">
             </div>
             <div class="col-sm-8"><!-- MANGA BIO -->
-                <h2>Title</h2>
-                <h3>By Author</h3>
+                <h2>{{manga.name}}</h2>
+                <h3>{{manga.authorId}}</h3>
                 <h4>Description :</h4><br>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>{{manga.description}}</p>
                 <div class="row">
                 <p class="col-sm-6">Reviews : *stars* number of reviews</p>
                 <p class="col-sm-6">Comments : number of comments</p>
