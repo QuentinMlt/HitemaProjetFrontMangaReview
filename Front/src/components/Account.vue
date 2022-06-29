@@ -53,7 +53,7 @@ function displayReviewsSection() {
                     </div>
                     <div class="col-sm-2">
                     </div>
-                    <div class="col-sm-8" id="block">
+                    <div class="col-sm-6" id="block">
                         <MAABU v-if="section == 'Publications'"></MAABU>
                         <RBU v-if="section == 'Reviews'"></RBU>
                     </div>

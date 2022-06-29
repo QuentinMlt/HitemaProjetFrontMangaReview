@@ -42,6 +42,9 @@
       <li class="nav-item">
         <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link"><router-link class="navbar-brand" :to="{name: 'account'}"><b>Account</b></router-link></a>
+      </li>
     </ul>
   </div>
 </nav>
