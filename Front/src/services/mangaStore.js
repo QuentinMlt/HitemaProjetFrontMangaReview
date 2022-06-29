@@ -6,13 +6,13 @@ function useMangaStore(){
 }
 async function getMangasList() {
     
-    const response = await axios.get("https://api.mangadex.org/manga").then(res => res).catch(err => err);
+    const response = await axios.get("http://localhost:3001/manganime").then(res => res).catch(err => err);
     if (response.status !== 200) {
         return null;
     }
 
 
-    return response
+    return response.data
     
     
 }
