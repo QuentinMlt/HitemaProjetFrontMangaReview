@@ -28,6 +28,14 @@ async function getCover(mangaId,coverId) {
     
 }
 
+async function addMangaOrAnime(entity)
+{
+    const response = await axios.post("http://localhost:3001/manganime", {"name": entity.name,"description": entity.description, "type": entity.type, "imageUrl": entity.imageUrl, "genres": entity.categoriesList}, {headers: {Authorization: 'Bearer ' + token}}).then(res => res).catch(err => err);
+    if (response.status !== 201) {
+        return null;
+    }
+    console.log("post réussi")
+}
 
 async function getCategoriesList() {
     const categoriesList = await axios.get(`http://localhost:3001/genres`).then(res => res).catch(err => err);
