@@ -1,39 +1,53 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
 import Joi from 'joi';
+import {useMangaStore} from "@/services/mangaStore";
+const {addMangaOrAnime, getCategoriesList} = useMangaStore();
 
 const name = ref("");
 const description = ref("");
 const type = ref("");
 const category = ref("");
-const genreList = ref([]);
+const categoriesList = ref([]);
+const categoriesIdList = ref([]);
+const allCategories = ref([]);
 const imageUrl = ref("");
 const errorSaisie = ref('');
 
+
+onMounted(async () => {
+  allCategories.value = await getCategoriesList();
+})
+
+
+
 function addCategory() {
-    if(!genreList.value.includes(category.value)) {
-        genreList.value.push(category.value);
+    if(!categoriesList.value.includes(category.value)) {
+        categoriesList.value.push(category.value);
+    } 
+    if(!categoriesIdList.value.includes(category.value._id)) {
+        categoriesIdList.value.push(category.value._id);
     } 
 }
 
 function deleteCategory(name) {
-    genreList.value.pop(name);
+    categoriesList.value.pop(name);
 }
 
-function submitForm() {
+async function submitForm() {
     const scheme = Joi.object({
             name: Joi.string().min(2).max(100).required(),
             description: Joi.string().min(10).max(500).required(),
             type: Joi.string().required(),
-            genreList: Joi.array().required(),
+            categoriesList: Joi.array().required(),
             imageUrl: Joi.string().required()
         });
-
+        console.log(categoriesIdList.value)
         const payload = {
             name: name.value, 
             description: description.value,
             type: type.value,
-            genreList: genreList.value,
+            categoriesList: categoriesIdList.value,
             imageUrl: imageUrl.value
         };
 
@@ -44,8 +58,8 @@ function submitForm() {
             return;
         }
         else{
-            console.log("Reussi")
-            console.log(value)
+            console.log("Reussi");
+            await addMangaOrAnime(payload);
         }
 }
 
@@ -73,13 +87,13 @@ function submitForm() {
         <div class="form-group">
             <select class="form-select" id="categoriesSelect" v-model="category">
                 <option value="" disabled selected>Categories</option>
-                <option value="Manga">Manga</option>
-                <option value="Anime">Anime</option>
+                <option v-for="category in allCategories" :value="category">{{category.name}}</option>
+                
             </select>
             <br>
             
-            <div id="genreList">
-                <span class="badge badge-pill badge-primary me-1" v-for="name in genreList"><button class="me-1 badge badge-danger " @click="deleteCategory(name)">x</button>{{name}}</span>
+            <div id="categoriesList">
+                <span class="badge badge-pill badge-primary me-1" v-for="category in categoriesList"><button class="me-1 badge badge-danger " @click="deleteCategory(category)">x</button>{{category.name}}</span>
             </div>
             <button class="mt-1 btn btn-success " @click="addCategory()">Add category</button>
             <div>
