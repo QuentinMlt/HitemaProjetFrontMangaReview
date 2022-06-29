@@ -109,11 +109,7 @@ async function submitForm() {
 </template>
 
 <style>
-body {
-	color: #999;
-	background: #f5f5f5;
-	font-family: 'Varela Round', sans-serif;
-}
+
 .form-control {
 	box-shadow: none;
 	border-color: #ddd;
