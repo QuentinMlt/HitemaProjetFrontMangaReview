@@ -50,6 +50,7 @@ const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O
 
     <div class="rounded p-5" id="container">
         <h2 id="title">Mangas List</h2><br>
+        <router-link :to="{name: 'addMangaOrAnime'}">Add one</router-link>
         <div class="container-sm rounded p-2 section-block">
             <h5>Categories : </h5>
             <hr>
