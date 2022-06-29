@@ -3,13 +3,6 @@
 <footer class="bg-dark text-center text-white">
   <!-- Grid container -->
   <div class="container p-4">
-    <section class="mb-4">
-      <!-- Github -->
-      <a class="btn btn-floating m-1" href="https://github.com/" role="button"><img class="git" id="github" src="https://logos-world.net/wp-content/uploads/2020/11/GitHub-Emblem.png"/></a>
-      <!-- GitLab -->
-      <a class="btn btn-floating m-1" href="https://gitlab.com/" role="button"><img class="git" src="https://about.gitlab.com/images/press/logo/png/gitlab-logo-400.png"/></a>
-
-    </section>
     <!-- Section: Social media -->
 
 
