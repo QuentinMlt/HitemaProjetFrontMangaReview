@@ -10,22 +10,13 @@ const test = ref([])
 
 // on component creation
 onMounted(async () => {
-  let mangasData = await getAll();
-  for(let i = 0; i < mangasData.data.length; i++) {
-    let newArray = mangasData.data[i].relationships.filter(function (el) { return el.type == "cover_art"; });
-    mangasData.data[i]['lien'] = await getCover(mangasData.data[i]['id'], newArray[0].id);
-  }
+  let mangasData = await getMangasList();
 
-  mangasList.value = mangasData.data;
+  mangasList.value = mangasData.filter(function (el) {return el.type == "Manga"});
   newMangasList.value = mangasList.value;
-  console.log(newMangasList.value)
   })
 
-// Get mangas List
-async function getAll() {
-    let list =  await getMangasList()
-    return list.data;
-}
+
 
 //filter manga by letter
 async function filterByLetter(letter) {
@@ -35,7 +26,7 @@ async function filterByLetter(letter) {
          newMangasList.value =  mangasList.value;
     }
     else {
-         newMangasList.value =  mangasList.value.filter(function (el) {return el.attributes.title.en[0] == letter});
+         newMangasList.value =  mangasList.value.filter(function (el) {return el.name == letter});
     }
 
 }
@@ -61,12 +52,12 @@ const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O
             </ul>
         </div>
         <div class="row" id="listContainer"> <!-- Display -->
-                <div v-for="(manga, index) in newMangasList" :key="manga.id" class="col-sm-3 mt-3">
-                    <router-link :to="{name: 'mangaById', params: { id: manga.id }}">
+                <div v-for="(manga, index) in newMangasList" :key="manga._id" class="col-sm-3 mt-3">
+                    <router-link :to="{name: 'mangaById', params: { id: manga._id }}">
                         <div class="card bg-dark text-white thumbnail">
-                            <img :src="manga.lien" class="card-img" >
+                            <img :src="manga.imageUrl" class="card-img" >
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{manga.attributes.title.en}}</h5>
+                                <h5 class="card-title">{{manga.name}}</h5>
                             </div>
                         </div>
                     </router-link>
