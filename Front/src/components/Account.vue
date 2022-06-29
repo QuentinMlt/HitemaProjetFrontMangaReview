@@ -22,12 +22,12 @@ function displayReviewsSection() {
 
 <template>
         <div class="container-sm">    
-            <div id="userSection">
-                <div class="row">
-                    <div class="col-sm-2 p-2 thumbnail"><!-- USER IMG -->
+            <div id="userSection" class="row">
+                <div class="col-sm-2 p-2 thumbnail"><!-- USER IMG -->
                         <img src="https://mangadex.org/covers/a96676e5-8ae2-425e-b549-7f15dd34a6d8/3b736a05-2313-40b4-8af1-94b85b3efc72.jpg.256.jpg" class="card-img">
-                    </div>
-                    <div class="col-sm-3 ">
+                </div>
+                <div class="row col-sm-10">
+                    <div class="col-sm-5 mt-2">
                         <div class="p-3" id="block">
                             <h5 class="fw-bold">Bio</h5>
                             <div id="description">
@@ -35,25 +35,21 @@ function displayReviewsSection() {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 ">
+                    <div class="col-sm-5 mt-2 mb-2">
                         <div class="p-3" id="block">
                             <h5 class="fw-bold">Informations</h5>
                             <div id="userInformation">
-                                <p>Username : {{username}}</p>
-                                <hr>
-                                <p>Email : {{email}}</p>
+                            <p>Username : {{username}}</p><hr>
+                            <p>Email : {{email}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 mt-2">
                         <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayPublicationsSection()">Publications</button>
                         <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayReviewsSection()">Reviews</button>
                     </div>
-                    <div class="col-sm-2">
-                    </div>
-                    <div class="col-sm-2">
-                    </div>
-                    <div class="col-sm-6" id="block">
+                   
+                    <div class="col-sm-8 mt-2 ms-2" id="block">
                         <MAABU v-if="section == 'Publications'"></MAABU>
                         <RBU v-if="section == 'Reviews'"></RBU>
                     </div>
@@ -76,6 +72,10 @@ function displayReviewsSection() {
     background: white;
     box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, .5);
     overflow: hidden;
+}
+
+#userInformation {
+    overflow:auto;
 }
 
 .block-title {
