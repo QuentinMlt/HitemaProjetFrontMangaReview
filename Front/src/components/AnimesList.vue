@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import {useMangaStore} from "@/services/mangaStore";
 
-const {getMangasList} = useMangaStore();
+const {getMangaOrAnimeList} = useMangaStore();
 
 const animesList = ref([]);
 const newMangasList = ref([]);
@@ -10,7 +10,7 @@ const test = ref([])
 
 // on component creation
 onMounted(async () => {
-  let animesData = await getMangasList();
+  let animesData = await getMangaOrAnimeList();
    
   animesList.value = animesData.filter(function (el) {return el.type == "Anime"});
   newMangasList.value = animesList.value;
@@ -20,15 +20,13 @@ onMounted(async () => {
 
 //filter anime by letter
 async function filterByLetter(letter) {
-    console.log(letter)
     if(letter == "#") 
     {
          newMangasList.value =  animesList.value;
-         console.log(animesList.value)
          
     }
     else {
-         newMangasList.value =  animesList.value.filter(function (el) {return el.name == letter});
+         newMangasList.value =  animesList.value.filter(function (el) {return el.name[0] == letter});
         
     }
 
