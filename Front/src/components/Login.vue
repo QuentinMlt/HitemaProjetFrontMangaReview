@@ -13,7 +13,7 @@ export default {
       password:''
     }
   },
-
+	
   //resultat en sortie apres avoir submit le formulaire
   methods: {
     submitForm() {
@@ -23,7 +23,7 @@ export default {
         alert('Form successfully submitted')
       }
       else{
-         alert('Form failed validation')
+         alert('Form failed validation') 
       }
      
     },
@@ -49,12 +49,12 @@ export default {
 		<div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
     	<h4 class="modal-title">Login to Your Account</h4>
         <div class="form-group">
-            <input type="text" class="form-control" v-model="email" placeholder="Email" required="required">
+            <input type="text" name="email" class="form-control" v-model="email" placeholder="Email" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" v-model="password" placeholder="Password" required="required">
+            <input type="password" name="password" class="form-control" v-model="password" placeholder="Password" required="required">
         </div>
-        <input @click="submitForm()" class="btn btn-primary btn-block btn-lg" value="Login">              
+        <input @click="submitForm()" name="button" class="btn btn-primary btn-block btn-lg" value="Login">            
     </form>			
     <div class="text-center small">Don't have an account? <a><router-link :to="{name: 'register'}"><b>Sign up</b></router-link></a></div>
 </div>
@@ -143,5 +143,8 @@ body {
 }
 .login-form a {
 	color: rgb(8,100,197);
+}
+.modal-title{
+	color: orange;
 }
 </style>
