@@ -1,9 +1,10 @@
 <script setup>
 import {ref, onMounted} from 'vue'
-import {useMangaStore} from "@/services/mangaStore";
+import {useCommentStore} from "@/services/commentStore";
 import StarRating from 'vue-star-rating'
 
-const {getCommentsByUser, deleteComment} = useMangaStore()
+
+const {deleteComment, getCommentsByUser} = useCommentStore()
 
 const MangaAnime = ref("")
 let userId = "62bca3b7e972e5844380d4c0";

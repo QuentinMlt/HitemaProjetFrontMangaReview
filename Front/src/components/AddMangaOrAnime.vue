@@ -2,7 +2,9 @@
 import {ref, onMounted} from 'vue'
 import Joi from 'joi';
 import {useMangaStore} from "@/services/mangaStore";
-const {addMangaOrAnime, getCategoriesList} = useMangaStore();
+import {useCategoriesStore} from "@/services/categoriesStore";
+const {addMangaOrAnime} = useMangaStore();
+const {getCategoriesList} = useCategoriesStore();
 
 const name = ref("");
 const description = ref("");

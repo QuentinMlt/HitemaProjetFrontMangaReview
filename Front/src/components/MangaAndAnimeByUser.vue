@@ -29,8 +29,8 @@ async function deleteMangAnime(id) {
             <h4 class="card-title h5 h4-sm">{{entity.name}}</h4>
             <h5 class="card-subtitle">{{entity.type}}</h5><br>
             <div class="row col-sm-6">
-                <router-link class="btn btn-info mt-2" :to="{name: entity.type.toLowerCase() + 'ById', params: { id: entity._id }}">Voir</router-link>
-                <router-link class="btn btn-info mt-2" :to="{name: 'updateMangaOrAnime', params: { id: entity._id }}">Voir</router-link>
+                <router-link class="btn btn-info mt-2 ms-2" :to="{name: entity.type.toLowerCase() + 'ById', params: { id: entity._id }}">Voir</router-link>
+                <router-link class="btn btn-dark mt-2 ms-2" :to="{name: 'updateMangaOrAnime', params: { id: entity._id }}">Update</router-link>
                 <form><button class="btn btn-danger mt-1" @click="deleteMangAnime(entity._id)">Delete</button></form>
             </div>
         </div>

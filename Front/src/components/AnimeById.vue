@@ -4,8 +4,12 @@ import Joi from 'joi';
 import {useRoute} from "vue-router";
 import StarRating from 'vue-star-rating'
 import {useMangaStore} from "@/services/mangaStore";
+import {useCommentStore} from "@/services/commentStore";
+import {useReviewStore} from "@/services/reviewStore";
 
-const {getMangaOrAnimeById, putReview,postComment} = useMangaStore();
+const {getMangaOrAnimeById} = useMangaStore();
+const {postComment} = useCommentStore()
+const {putReview} = useReviewstore()
 
 const anime = ref("");
 const animeId = ref("");
