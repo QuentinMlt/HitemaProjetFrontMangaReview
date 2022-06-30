@@ -72,16 +72,7 @@ const router = createRouter({
             name: 'animeById',
             component: AnimeById,
         },
-        {
-            path: "/moderation",
-            name: 'moderation',
-            component: AdminDashboard,
-        },
-        {
-            path: "/update-manga-or-anime/:id",
-            name: 'updateMangaOrAnime',
-            component: AdminDashboard,
-        },
+        
     ]
 })
 
