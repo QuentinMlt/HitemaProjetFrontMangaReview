@@ -1,14 +1,25 @@
 <script setup>
 import {useUserStore} from "@/services/userstore";
 import {ref, onMounted} from 'vue'
+import { useRouter } from 'vue-router';
 
+let a = 1;
+const router = useRouter()
 const userInfo = ref("")
+const {disconnect} = useUserStore();
+
+function clickDisconnect(){
+  disconnect()
+  router.push({name: "home"});
+}
+
 
 onMounted(() => {
   console.log("userInfo 1")
 const storeToken = JSON.parse(localStorage.getItem('token'));
 userInfo.value = storeToken
  
+
 })
 
 </script>
@@ -30,6 +41,9 @@ userInfo.value = storeToken
             <button type="submit" class="form-button">search</button>
           </form>
         </div>
+         <div>
+            <button @click="clickDisconnect" type="submit" class="btn btn-info" id="deconnexion">déconnexion</button>
+          </div>
       </nav>
     </div>
   </header>
@@ -63,6 +77,16 @@ userInfo.value = storeToken
             <li class="nav-item">
               <a class="nav-link" v-if="!userInfo">
                 <router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link>
+              </a>
+            </li>
+            <li class="nav-item" v-if="userinfo && userInfo.isAdmin === false">
+              <a class="nav-link">
+                <router-link class="navbar-brand" :to="{name: 'account'}"><b>Account</b></router-link>
+              </a>
+            </li>
+            <li class="nav-item" v-if="userinfo && userInfo.isAdmin === true">
+              <a class="nav-link">
+                <router-link class="navbar-brand" :to="{name: 'dashboard'}"><b>dashboard</b></router-link>
               </a>
             </li>
             <li class="nav-item" v-if="userInfo">
@@ -128,6 +152,9 @@ border: none;
 outline: none;
 background: none;
     
+}
+#deconnexion{
+  color: white;
 }
 
 </style>
