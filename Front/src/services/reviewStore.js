@@ -2,7 +2,7 @@ import axios from 'axios'
 let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmJjYTNiN2U5NzJlNTg0NDM4MGQ0YzAiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcm5hbWUiOiJMYW1lZHVyIiwiaXNBZG1pbiI6dHJ1ZSwiY3JlYXRlZEF0IjoxNjU2NTI0ODMyMjAzLCJfX3YiOjAsImlhdCI6MTY1NjUzNTkzNiwiZXhwIjoxNjU2NjIyMzM2fQ.DlH3AXUX2XxMuz0ASIIhPZbR9aE_sJurV6YGTjwwXRY"
 
 function useReviewStore(){
-    return {getReviewsByUser, putReview};
+    return {getReviewsByUser, putReview, get10BestMangaAndAnime};
 }
 
 
@@ -12,7 +12,6 @@ async function getReviewsByUser(userId) {
     if (response.status !== 200) {
         return null;
     }
-    console.log(response.data)
 
     return response.data
     
@@ -24,6 +23,15 @@ async function putReview(review) {
     if (response.status !== 201) {
         return null;
     }
+}
+
+async function get10BestMangaAndAnime() {
+    const response = await axios.get("http://localhost:3001/reviews/Top10").then(res => res).catch(err => err);
+    if (response.status !== 200) {
+        return null;
+    }
+    return response.data
+    
 }
 
 export {useReviewStore};
