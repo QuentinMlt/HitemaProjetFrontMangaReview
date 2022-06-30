@@ -4,8 +4,12 @@ import Joi from 'joi';
 import {useRoute} from "vue-router";
 import StarRating from 'vue-star-rating'
 import {useMangaStore} from "@/services/mangaStore";
+import {useCommentStore} from "@/services/commentStore";
+import {useReviewStore} from "@/services/reviewStore";
 
-const {getMangaById, putReview,postComment} = useMangaStore();
+const {getMangaOrAnimeById} = useMangaStore();
+const {postComment} = useCommentStore();
+const {putReview} = useReviewstore()
 
 const manga = ref("");
 const mangaId = ref("");
@@ -19,7 +23,7 @@ onMounted( async () => {
     const route = useRoute();
     mangaId.value = route.params.id;
     console.log(mangaId.value);
-    manga.value = await getMangaById(mangaId.value);
+    manga.value = await getMangaOrAnimeById(mangaId.value);
     console.log(manga.value)
     loading.value = false
 })
