@@ -1,4 +1,3 @@
-
 <script>
 import useValidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
@@ -7,8 +6,6 @@ import { useRouter } from 'vue-router';
 
 
 const {connect, user} = useUserStore();
-
-
 
 export default {
 	
