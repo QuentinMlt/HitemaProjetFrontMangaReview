@@ -21,7 +21,7 @@ async function deleteMangAnime(id) {
 
 <template>
 
-<h5 class="mt-2">Reviews</h5>
+<h5 class="mt-2">Mangas and Animes</h5>
 
 <div v-for="entity in MangaAnime">
     <div class="card flex-row"><img class="card-img-left img_card ms-2" :src="entity.imageUrl"/>

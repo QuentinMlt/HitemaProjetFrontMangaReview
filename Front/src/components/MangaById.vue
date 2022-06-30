@@ -9,7 +9,7 @@ import {useReviewStore} from "@/services/reviewStore";
 
 const {getMangaOrAnimeById} = useMangaStore();
 const {postComment} = useCommentStore();
-const {putReview} = useReviewstore()
+const {putReview} = useReviewStore()
 
 const manga = ref("");
 const mangaId = ref("");
@@ -93,10 +93,13 @@ async function AddComment() {
                 <h3>by {{manga.authorId.username}}</h3>
                 <h4>Description :</h4><br>
                 <p>{{manga.description}}</p>
-                <div class="row">
+                <div class="row mb-2">
                     <p class="col-sm-6">Reviews : {{manga.reviews.length}} reviews</p>
                     <p class="col-sm-6">Comments : {{manga.comments.length}} comments</p>
                     <star-rating @click="setReview()" v-model:rating="rating" v-bind:star-size="30"></star-rating>
+                </div>
+                <div id="categoriesList">
+                    <span class="badge badge-pill badge-primary me-1" v-for="category in manga.genres">{{category.genreId.name}}</span>
                 </div>
             </div>
         </div>
