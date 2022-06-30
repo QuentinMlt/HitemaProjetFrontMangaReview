@@ -5,7 +5,7 @@ import {useRoute} from "vue-router";
 import StarRating from 'vue-star-rating'
 import {useMangaStore} from "@/services/mangaStore";
 
-const {getMangaById, putReview} = useMangaStore();
+const {getMangaById, putReview,postComment} = useMangaStore();
 
 const manga = ref("");
 const mangaId = ref("");
@@ -48,7 +48,28 @@ async function setReview() {
     
 }
 
+async function AddComment() {
+    const scheme = Joi.object({
+            content: Joi.string().min(4).max(300).required(),
+            manganimeId: Joi.string().required()
+        });
+        
+        const payload = {
+            content: newComment.value,
+            manganimeId: manga.value._id
+        };
 
+        const {value, error} = scheme.validate(payload);
+        if (error) {
+            console.log("PAS REUSSI")
+            errorSaisie.value = error.message;
+            return;
+        }
+        else{
+            console.log("Reussi");
+            await postComment(payload)
+        }
+}
 
 
 
