@@ -1,14 +1,17 @@
 
 <script setup>
-import {ref} from 'vue'
+import {ref,onMounted} from 'vue'
 import MAABU from './MangaAndAnimeByUser.vue';
 import RBU from './ReviewByUser.vue';
 import CBU from './CommentsByUser.vue';
 
+const userInfo = ref("")
 const section = ref("Publications")
 
-const username = "Quentin";
-const email = "email@gmail.com"; 
+onMounted(() => {
+const storeToken = JSON.parse(localStorage.getItem('token'));
+userInfo.value = storeToken;
+})
 
 function displayPublicationsSection() {
    section.value = "Publications";
@@ -35,17 +38,20 @@ function displayCommentsSection() {
                     <div class="col-sm-5 mt-2">
                         <div class="p-3" id="block"><!-- Description -->
                             <h5 class="fw-bold">Bio</h5>
-                            <div id="description">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            <div id="description" v-if="userInfo.user.description">
+                                <p>{{userInfo.user.description}}</p>
+                            </div>
+                            <div id="description" v-else>
+                                <p>vous n'avez pas de description</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-5 mt-2 mb-2">
                         <div class="p-3" id="block"><!-- USER INFO -->
                             <h5 class="fw-bold">Informations</h5>
-                            <div id="userInformation">
-                            <p>Username : {{username}}</p><hr>
-                            <p>Email : {{email}}</p>
+                            <div id="userInformation" >
+                            <p>Username : {{userInfo.user.username}}</p><hr>
+                            <p>Email : {{userInfo.user.email}}</p>
                             </div>
                         </div>
                     </div>
