@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ref } from "vue";
 
-
+const URL = "http://localhost:3001"
 axios.interceptors.request.use(function (config) {
     config.headers['x-auth-token'] = localStorage.getItem('token') || "";
     return config;
@@ -21,11 +21,11 @@ function useUserStore() {
 async function inscription(email, username, password) {
     if (email && password && username) {
         console.log("register !")
-        const response = await axios.post('http://localhost:3001/register', { "email": email, "password": password, "username": username }).then(res => res).catch(err => err);
+        const response = await axios.post(`${URL}/users/register`, { "email": email, "password": password, "username": username }).then(res => res).catch(err => err);
         if (response.status !== 201) {
             return null;
         }
-        localStorage.setItem('token', response.headers['x-auth-token']);
+        localStorage.setItem('token', response.headers['Authorization']);
         console.log(response.data)
         return user.value = { "email": response.data.email, "username": response.data.username };
     }
@@ -37,12 +37,15 @@ async function inscription(email, username, password) {
 // récupération de l'email et le password et on l'envoie vers le back afin de vérifier les données
 async function connect(email, password) {
     if (email && password) {
-        const response = await axios.post('http://localhost:3001/login', { "email": email, "password": password }).then(res => res).catch(err => err);
-        if (response.status !== 200) {
+       // console.log("test",email,password)
+        const response = await axios.post(`${URL}/login`, { "email": email, "password": password }).then(res => res).catch(err => err);
+        if (response.status !== 201) {
             return null;
         }
-        localStorage.setItem('token', response.headers['x-auth-token']);
-        return user.value = response.data.user;
+       // console.log(response.data.email)
+        localStorage.setItem('token', response.headers['Authorization']);
+        return user.value = response.data;
+        
     }
     else {
         return null;
