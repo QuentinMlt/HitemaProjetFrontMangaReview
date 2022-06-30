@@ -1,10 +1,16 @@
 <script>
 import useValidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
+import {useUserStore} from "@/services/userstore";
+import { useRouter } from 'vue-router';
+import { ref } from "vue";
 
+
+const {connect, user} = useUserStore();
+const router = useRouter();
 
 export default {
-
+	
   //data des données à vérifier 
   data() {
     return {
@@ -16,11 +22,22 @@ export default {
 	
   //resultat en sortie apres avoir submit le formulaire
   methods: {
-    submitForm() {
-      this.v$.$validate()
+    async submitForm() {
+      await this.v$.$validate()
       if(!this.v$.$error)
       {
-        alert('Form successfully submitted')
+		await connect(this.email,this.password)
+		console.log(user.value.isAdmin)
+		if (user.value.isAdmin === true){
+			router.push({name: "moderateur"});
+			
+		}
+		else if(user.value.isAdmin === false){
+			router.push({name: "account"});
+		}
+		else {
+			alert('Nobody found')
+		}
       }
       else{
          alert('Form failed validation') 
@@ -38,8 +55,6 @@ export default {
   }
 
 }
-
-
 
 </script>
 
