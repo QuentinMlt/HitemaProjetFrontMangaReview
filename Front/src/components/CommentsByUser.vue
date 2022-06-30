@@ -30,6 +30,7 @@ async function delComment(id) {
             <h4 class="card-title h5 h4-sm">{{entity.manganimeId.name}}</h4>
             <h5 class="card-subtitle">{{entity.manganimeId.type}}</h5><br>
             <p class="card-text">{{entity.content}}</p>
+            <p class="card-text">{{Date(entity.createdAt)}}</p>
             <div class="row col-sm-6">
                 <router-link class="btn btn-info mt-2" :to="{name: entity.manganimeId.type.toLowerCase() + 'ById', params: { id: entity.manganimeId._id }}">Update Comments</router-link>
                 <form><button class="btn btn-danger mt-1" @click="delComment(entity._id)">Delete</button></form>
