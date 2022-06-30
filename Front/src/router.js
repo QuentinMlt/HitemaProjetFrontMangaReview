@@ -15,6 +15,8 @@ import AddMangaOrAnime from "@/components/AddMangaOrAnime.vue";
 import AnimesList from "@/components/AnimesList.vue";
 import MangasList from "@/components/MangasList.vue";
 import AnimeById from "@/components/AnimeById.vue";
+import UpdateMangaOrAnime from "@/components/updateMangaOrAnime.vue";
+
 
 
 const storeToken = ref("")
@@ -73,14 +75,9 @@ const router = createRouter({
             component: AnimeById,
         },
         {
-            path: "/moderation",
-            name: 'moderation',
-            component: AdminDashboard,
-        },
-        {
             path: "/update-manga-or-anime/:id",
             name: 'updateMangaOrAnime',
-            component: AdminDashboard,
+            component: UpdateMangaOrAnime,
         },
     ]
 })
