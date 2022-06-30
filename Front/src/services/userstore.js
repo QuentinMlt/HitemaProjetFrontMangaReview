@@ -3,7 +3,9 @@ import { ref } from "vue";
 
 const URL = "http://localhost:3001"
 axios.interceptors.request.use(function (config) {
-    config.headers['x-auth-token'] = localStorage.getItem('token') || "";
+   // config.headers['x-auth-token'] = localStorage.getItem('token') || "";
+   config.headers['authorization'] = localStorage.getItem('token') || "";
+
     return config;
 });
 
@@ -25,7 +27,7 @@ async function inscription(email, username, password) {
         if (response.status !== 201) {
             return null;
         }
-        localStorage.setItem('token', response.headers['Authorization']);
+        localStorage.setItem('token', response.headers['authorization']);
         console.log(response.data)
         return user.value = { "email": response.data.email, "username": response.data.username };
     }
@@ -42,8 +44,10 @@ async function connect(email, password) {
         if (response.status !== 201) {
             return null;
         }
-       // console.log(response.data.email)
-        localStorage.setItem('token', response.headers['Authorization']);
+      
+      //  console.log(response.headers)
+        localStorage.setItem('token', JSON.stringify({ jwt : response.headers['authorization'], user : response.data}));
+        
         return user.value = response.data;
         
     }
