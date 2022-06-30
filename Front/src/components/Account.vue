@@ -38,7 +38,7 @@ function displayCommentsSection() {
                     <div class="col-sm-5 mt-2">
                         <div class="p-3" id="block"><!-- Description -->
                             <h5 class="fw-bold">Bio</h5>
-                            <div id="description" v-if="userInfo.user.description">
+                            <div id="description" v-if="userInfo.description">
                                 <p>{{userInfo.user.description}}</p>
                             </div>
                             <div id="description" v-else>
@@ -49,7 +49,7 @@ function displayCommentsSection() {
                     <div class="col-sm-5 mt-2 mb-2">
                         <div class="p-3" id="block"><!-- USER INFO -->
                             <h5 class="fw-bold">Informations</h5>
-                            <div id="userInformation" >
+                            <div id="userInformation" v-if="userInfo">
                             <p>Username : {{userInfo.user.username}}</p><hr>
                             <p>Email : {{userInfo.user.email}}</p>
                             </div>
