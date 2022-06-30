@@ -1,12 +1,14 @@
+
 <script>
 import useValidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 import {useUserStore} from "@/services/userstore";
 import { useRouter } from 'vue-router';
-import { ref } from "vue";
 
 
 const {connect, user} = useUserStore();
+
+
 
 export default {
 	
@@ -28,8 +30,10 @@ export default {
       if(!this.v$.$error)
       {
 		await connect(this.email,this.password)
-		console.log(user.value.isAdmin)
+		const test = localStorage.getItem("token")
+		//console.log(JSON.parse(test))
 		if (user.value.isAdmin === true){
+			
 			this.router.push({name: "dashboard"});
 		}
 		else if(user.value.isAdmin === false){
