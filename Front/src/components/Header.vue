@@ -3,7 +3,6 @@ import {useUserStore} from "@/services/userstore";
 import {ref, onMounted} from 'vue'
 import { useRouter } from 'vue-router';
 
-let a = 1;
 const router = useRouter()
 const userInfo = ref("")
 const {disconnect} = useUserStore();
@@ -40,7 +39,7 @@ userInfo.value = storeToken
           </form>
         </div>
          <div>
-            <button @click="clickDisconnect" type="submit" class="btn btn-info" id="deconnexion">déconnexion</button>
+            <button @click="clickDisconnect" type="submit" class="btn btn-info" id="deconnexion" v-if="userInfo">déconnexion</button>
           </div>
       </nav>
     </div>
