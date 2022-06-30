@@ -1,4 +1,5 @@
 import {createWebHistory, createRouter} from "vue-router";
+import {ref, onMounted} from 'vue'
 
 import Home from "@/components/Home.vue";
 
@@ -15,10 +16,7 @@ import MangasList from "@/components/MangasList.vue";
 import AnimeById from "@/components/AnimeById.vue";
 
 
-
-
-
-// Création des differentes routes du projet
+const storeToken = ref("")
 
 const router = createRouter({
     history: createWebHistory(),
@@ -78,6 +76,18 @@ const router = createRouter({
 router.beforeEach((to,from,next) => {
     const isConnected = localStorage.getItem('token') === null ? false : true
     const routeNeedLogin =["account","dashboard"]
+    const routeOnlyAdmin = ["dashboard"]
+    const routeOnlyMember = ["account"]
+    if(isConnected)
+    {
+        
+        storeToken.value = JSON.parse(localStorage.getItem('token'))
+        console.log(storeToken.value)
+        const adminVerify = storeToken.value.user.isAdmin
+        console.log("tetetetete",adminVerify)
+        if(adminVerify === false && routeOnlyAdmin.includes(to.name)) next({name: 'account'});
+        if(adminVerify === true && routeOnlyMember.includes(to.name)) next({name: 'dashboard'});
+    }
     if (routeNeedLogin.includes(to.name) && !isConnected) next({name: 'login'})
     next()
 }) 
