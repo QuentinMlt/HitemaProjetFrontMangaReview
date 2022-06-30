@@ -11,6 +11,7 @@ import Dashboard from "@/components/Dashboard.vue";
 
 //Products
 import MangaById from "@/components/MangaById.vue";
+import AddMangaOrAnime from "@/components/AddMangaOrAnime.vue";
 import AnimesList from "@/components/AnimesList.vue";
 import MangasList from "@/components/MangasList.vue";
 import AnimeById from "@/components/AnimeById.vue";
@@ -60,6 +61,11 @@ const router = createRouter({
             path: "/mangas/:id",
             name: 'mangaById',
             component: MangaById,
+        },
+        {
+            path: "/add-manga-or-anime",
+            name: 'addMangaOrAnime',
+            component: AddMangaOrAnime,
         },
         {
             path: "/animes/:id",
