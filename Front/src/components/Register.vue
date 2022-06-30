@@ -109,16 +109,13 @@ body {
 .login-form {
 	width: 350px;
 	margin: 0 auto;
-	padding: 30px 0;
 }
 .login-form form {
 	color: #434343;
 	border-radius: 1px;
 	margin-bottom: 15px;
 	background: #fff;
-	border: 1px solid #f3f3f3;
-	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	padding: 30px;
+  padding: 30px;
 }
 .login-form h4 {
 	text-align: center;

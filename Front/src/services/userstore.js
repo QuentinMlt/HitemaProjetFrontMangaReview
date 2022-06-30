@@ -59,7 +59,7 @@ async function connect(email, password) {
 // recupération du token qui a été stocké pour connecter automatiquement le user
 async function autoConnect() {
     if (localStorage.getItem('token')) {
-        const response = await axios.post('http://localhost:3001/moncompte').then(res => res).catch(err => err);
+        const response = await axios.post('http://localhost:3001/login').then(res => res).catch(err => err);
         if (response.status !== 200) {
             localStorage.removeItem('token');
             return null;

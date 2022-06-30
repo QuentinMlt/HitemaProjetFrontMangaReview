@@ -88,9 +88,8 @@ router.beforeEach((to,from,next) => {
     {
         
         storeToken.value = JSON.parse(localStorage.getItem('token'))
-        console.log(storeToken.value)
+        //console.log(storeToken.value)
         const adminVerify = storeToken.value.user.isAdmin
-        console.log("tetetetete",adminVerify)
         if(adminVerify === false && routeOnlyAdmin.includes(to.name)) next({name: 'account'});
         if(adminVerify === true && routeOnlyMember.includes(to.name)) next({name: 'dashboard'});
     }
