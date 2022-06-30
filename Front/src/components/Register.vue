@@ -1,22 +1,10 @@
-<script setup>
-import {ref, onMounted} from 'vue'
 
-const userInfo = ref("")
-
-onMounted(() => {
-const storeToken = JSON.parse(localStorage.getItem('token'));
-userInfo.value = storeToken
-})
-
-console.log(userInfo.value)
-</script>
 
 <script>
 import useValidate from '@vuelidate/core'
 import { required, email, minLength, maxLength } from '@vuelidate/validators'
 import {useUserStore} from "@/services/userstore";
-import { useRouter } from 'vue-router';
-import {ref, onMounted} from 'vue'
+
 
 const {inscription, user} = useUserStore();
 

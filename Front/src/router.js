@@ -90,7 +90,7 @@ router.beforeEach((to,from,next) => {
     const routeNeedLogin =["account","dashboard"]
     const routeOnlyAdmin = ["dashboard"]
     const routeOnlyMember = ["account"]
-    if(isConnected)
+    if(isConnected.value)
     {
         
         storeToken.value = JSON.parse(localStorage.getItem('token'))
