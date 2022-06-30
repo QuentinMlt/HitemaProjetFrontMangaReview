@@ -44,7 +44,6 @@ async function submitForm() {
             categoriesList: Joi.array().required(),
             imageUrl: Joi.string().required()
         });
-        console.log(categoriesIdList.value)
         const payload = {
             name: name.value, 
             description: description.value,
@@ -57,6 +56,7 @@ async function submitForm() {
         if (error) {
             console.log("PAS REUSSI")
             errorSaisie.value = error.message;
+            console.log(errorSaisie.value)
             return;
         }
         else{

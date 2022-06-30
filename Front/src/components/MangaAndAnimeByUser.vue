@@ -6,10 +6,12 @@ import StarRating from 'vue-star-rating'
 const {getMangaOrAnimeByUser, deleteMangaOrAnime} = useMangaStore()
 
 const MangaAnime = ref("")
-let userId = "62bca3b7e972e5844380d4c0";
+const userInfo = ref("")
 
 onMounted(async () => {
-  MangaAnime.value = await getMangaOrAnimeByUser(userId);
+    const storeToken = JSON.parse(localStorage.getItem('token'));
+    userInfo.value = storeToken
+  MangaAnime.value = await getMangaOrAnimeByUser(userInfo.value.user._id);
 })
 
 async function deleteMangAnime(id) {

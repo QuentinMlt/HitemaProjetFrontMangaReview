@@ -17,16 +17,39 @@ const loading = ref(true);
 const rating = ref("");
 const newComment = ref("");
 const errorSaisie = ref('');
+const userInfo = ref("")
+const connectedUserRating = ref([])
+const average = ref("");
+const list = ref([]);
 
-
-onMounted( async () => {
+onMounted(async () => {
+    const storeToken = JSON.parse(localStorage.getItem('token'));
+    userInfo.value = storeToken
+    
     const route = useRoute();
     mangaId.value = route.params.id;
-    console.log(mangaId.value);
     manga.value = await getMangaOrAnimeById(mangaId.value);
-    console.log(manga.value)
+    
+    connectedUserRating.value = manga.value.reviews.filter(el => el.authorId._id == userInfo.value.user._id)
+
+    for(let i = 0; i< manga.value.reviews.length; i++)
+    {
+        list.value.push(manga.value.reviews[i].score)
+    }
+    average.value = ArrayAvg(list.value)
+
+    if(connectedUserRating.value) {rating.value = connectedUserRating.value[0].score}
+
     loading.value = false
 })
+
+function ArrayAvg(myArray) {
+    var i = 0, summ = 0, ArrayLen = myArray.length;
+    while (i < ArrayLen) {
+        summ = summ + myArray[i++];
+}
+    return summ / ArrayLen;
+}
 
 async function setReview() {
    const scheme = Joi.object({
@@ -94,7 +117,7 @@ async function AddComment() {
                 <h4>Description :</h4><br>
                 <p>{{manga.description}}</p>
                 <div class="row mb-2">
-                    <p class="col-sm-6">Reviews : {{manga.reviews.length}} reviews</p>
+                    <p class="col-sm-6">Reviews : {{manga.reviews.length}} reviews | Average : {{average}}/5</p>
                     <p class="col-sm-6">Comments : {{manga.comments.length}} comments</p>
                     <star-rating @click="setReview()" v-model:rating="rating" v-bind:star-size="30"></star-rating>
                 </div>

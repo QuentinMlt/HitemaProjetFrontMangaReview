@@ -7,10 +7,12 @@ import StarRating from 'vue-star-rating'
 const {deleteComment, getCommentsByUser} = useCommentStore()
 
 const MangaAnime = ref("")
-let userId = "62bca3b7e972e5844380d4c0";
+const userInfo = ref("")
 
 onMounted(async () => {
-  MangaAnime.value = await getCommentsByUser(userId);
+    const storeToken = JSON.parse(localStorage.getItem('token'));
+    userInfo.value = storeToken
+    MangaAnime.value = await getCommentsByUser(userInfo.value.user._id);
 })
 
 async function delComment(id) {

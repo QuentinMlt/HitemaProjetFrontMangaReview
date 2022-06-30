@@ -56,9 +56,9 @@ function displayCommentsSection() {
                         </div>
                     </div>
                     <div class="col-sm-2 mt-2">
-                        <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayPublicationsSection()">Publications</button>
-                        <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayReviewsSection()">Reviews</button>
-                        <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayCommentsSection()">Comments</button>
+                        <button class="btn  block-title text-primary fw-bold mb-2" @click="displayPublicationsSection()">Publications</button>
+                        <button class="btn  block-title text-primary fw-bold mb-2" @click="displayReviewsSection()">Reviews</button>
+                        <button class="btn  block-title text-primary fw-bold mb-2" @click="displayCommentsSection()">Comments</button>
                     </div>
                    
                     <div class="col-sm-9 mt-2 ms-2" id="block"><!-- Get vue specific vue by button above -->

@@ -1,16 +1,18 @@
 <script setup>
 import {ref, onMounted} from 'vue'
-import {useMangaStore} from "@/services/mangaStore";
+import {useReviewStore} from "@/services/reviewStore";
 import StarRating from 'vue-star-rating'
 
-const {getReviewsByUser} = useMangaStore()
+const {getReviewsByUser} = useReviewStore()
 
 const review = ref("")
-let userId = "62bca3b7e972e5844380d4c0";
 const loading = ref(false);
+const userInfo = ref("")
 
 onMounted(async () => {
-  review.value = await getReviewsByUser(userId);
+    const storeToken = JSON.parse(localStorage.getItem('token'));
+    userInfo.value = storeToken
+  review.value = await getReviewsByUser(userInfo.value.user._id);
   loading.value = true;
 })
 </script>
