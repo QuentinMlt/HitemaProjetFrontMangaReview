@@ -7,7 +7,6 @@ import { ref } from "vue";
 
 
 const {connect, user} = useUserStore();
-const router = useRouter();
 
 export default {
 	
@@ -16,7 +15,9 @@ export default {
     return {
       v$: useValidate(),
       email: '',
-      password:''
+      password:'',
+	  router: useRouter()
+
     }
   },
 	
@@ -29,11 +30,10 @@ export default {
 		await connect(this.email,this.password)
 		console.log(user.value.isAdmin)
 		if (user.value.isAdmin === true){
-			router.push({name: "moderateur"});
-			
+			this.router.push({name: "dashboard"});
 		}
 		else if(user.value.isAdmin === false){
-			router.push({name: "account"});
+			this.router.push({name: "account"});
 		}
 		else {
 			alert('Nobody found')
