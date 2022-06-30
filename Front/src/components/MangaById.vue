@@ -68,6 +68,7 @@ async function AddComment() {
         else{
             console.log("Reussi");
             await postComment(payload)
+            
         }
 }
 
@@ -89,8 +90,8 @@ async function AddComment() {
                 <h4>Description :</h4><br>
                 <p>{{manga.description}}</p>
                 <div class="row">
-                    <p class="col-sm-6">Reviews : *stars* number of reviews</p>
-                    <p class="col-sm-6">Comments : number of comments</p>
+                    <p class="col-sm-6">Reviews : {{manga.reviews.length}} reviews</p>
+                    <p class="col-sm-6">Comments : {{manga.comments.length}} comments</p>
                     <star-rating @click="setReview()" v-model:rating="rating" v-bind:star-size="30"></star-rating>
                 </div>
             </div>
@@ -102,12 +103,23 @@ async function AddComment() {
         <div class="ms-3 p-3 section-comment">
             <strong>Your opinion :</strong>
             <!-- ADD COMMENTS & REVIEWS -->
+            <form>
                 <div class="form-group mb-2">
                     <label for="Comments">Comments :</label>
                     <textarea type="text" class="form-control" id="Comments" v-model="newComment"></textarea>
                 </div>
                 <button class="btn btn-success" @click="AddComment(newComment)">Add your comment</button>
+            </form>
             <hr>
+            <div v-for="comment in manga.comments">
+             <div class="card flex-row"><img class="card-img-left img_card ms-2" src="https://cdn.mangakawaii.pics/uploads/cdnimages/placeholder.png"/>
+                <div class="card-body">
+                    <h4 class="card-title h5 h4-sm">{{comment.authorId.name}}</h4>
+                    <p class="card-text">{{comment.content}}</p>
+                    <p class="card-subtitle">{{comment.createdAt}}</p>
+                </div>
+            </div><hr>
+            </div>
         </div>
         
     </div> 
