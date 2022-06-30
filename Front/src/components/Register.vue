@@ -1,7 +1,11 @@
 <script >
 import useValidate from '@vuelidate/core'
 import { required, email, minLength, maxLength } from '@vuelidate/validators'
+import {useUserStore} from "@/services/userstore";
+import { useRouter } from 'vue-router';
 
+const {inscription, user} = useUserStore();
+const router = useRouter()
 export default {
 
   //data des données à vérifier 
@@ -15,17 +19,17 @@ export default {
   },
 
   //resultat en sortie apres avoir submit le formulaire
-  methods: {
-    submitForm() {
-      this.v$.$validate()
+   methods: {
+    async submitForm() {
+      await this.v$.$validate()
       if(!this.v$.$error)
       {
-        alert('Form successfully submitted')
+		await inscription(this.email,this.username,this.password)
+		alert('Compte bien créé') 
       }
       else{
-         alert('Form failed validation')
+         alert('Form failed validation') 
       }
-     
     },
   },
 
@@ -69,7 +73,7 @@ export default {
         <div class="form-group">
             <input type="password" class="form-control" v-model="password" placeholder="Password" required="required">
         </div>
-        <input @click="submitForm()" class="btn btn-primary btn-block btn-lg" value="Login">              
+        <input @click="submitForm()" class="btn btn-primary btn-block btn-lg" value="Register">              
     </form>			
     <div class="text-center small">Already have an account? <a><router-link :to="{name: 'login'}"><b>Sign in</b></router-link></a></div>
 </div>
