@@ -1,8 +1,9 @@
 <script setup>
 import HeaderVue from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import {useMangaStore} from "@/services/mangaStore";
-const {getMangasList, getCover} = useMangaStore();
+
+
+
 </script>
 
 <template>
@@ -18,4 +19,4 @@ body {
   background: rgb(249,249,249);
 }
 </style>
-<link rel="stylesheet" href="style.css">
+
