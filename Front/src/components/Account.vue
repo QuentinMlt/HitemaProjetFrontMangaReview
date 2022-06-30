@@ -3,6 +3,7 @@
 import {ref} from 'vue'
 import MAABU from './MangaAndAnimeByUser.vue';
 import RBU from './ReviewByUser.vue';
+import CBU from './CommentsByUser.vue';
 
 const section = ref("Publications")
 
@@ -15,6 +16,10 @@ function displayPublicationsSection() {
 
 function displayReviewsSection() {
    section.value = "Reviews";
+}
+
+function displayCommentsSection() {
+   section.value = "Comments";
 }
 
 
@@ -47,11 +52,13 @@ function displayReviewsSection() {
                     <div class="col-sm-2 mt-2">
                         <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayPublicationsSection()">Publications</button>
                         <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayReviewsSection()">Reviews</button>
+                        <button class="btn bg-light block-title fw-bold btn-outline-light" @click="displayCommentsSection()">Comments</button>
                     </div>
                    
-                    <div class="col-sm-8 mt-2 ms-2" id="block"><!-- Get vue specific vue by button above -->
+                    <div class="col-sm-9 mt-2 ms-2" id="block"><!-- Get vue specific vue by button above -->
                         <MAABU v-if="section == 'Publications'"></MAABU>
                         <RBU v-if="section == 'Reviews'"></RBU>
+                        <CBU v-if="section == 'Comments'"></CBU>
                     </div>
                 </div>
             </div>
