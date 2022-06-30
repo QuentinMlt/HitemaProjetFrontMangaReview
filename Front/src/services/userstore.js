@@ -1,9 +1,11 @@
 import axios from "axios";
 import { ref } from "vue";
 
-
+const URL = "http://localhost:3001"
 axios.interceptors.request.use(function (config) {
-    config.headers['x-auth-token'] = localStorage.getItem('token') || "";
+   // config.headers['x-auth-token'] = localStorage.getItem('token') || "";
+   config.headers['authorization'] = localStorage.getItem('token') || "";
+
     return config;
 });
 
@@ -21,11 +23,11 @@ function useUserStore() {
 async function inscription(email, username, password) {
     if (email && password && username) {
         console.log("register !")
-        const response = await axios.post('http://localhost:3001/register', { "email": email, "password": password, "username": username }).then(res => res).catch(err => err);
+        const response = await axios.post(`${URL}/users/register`, { "email": email, "password": password, "username": username }).then(res => res).catch(err => err);
         if (response.status !== 201) {
             return null;
         }
-        localStorage.setItem('token', response.headers['x-auth-token']);
+        localStorage.setItem('token', response.headers['authorization']);
         console.log(response.data)
         return user.value = { "email": response.data.email, "username": response.data.username };
     }
@@ -37,12 +39,17 @@ async function inscription(email, username, password) {
 // récupération de l'email et le password et on l'envoie vers le back afin de vérifier les données
 async function connect(email, password) {
     if (email && password) {
-        const response = await axios.post('http://localhost:3001/login', { "email": email, "password": password }).then(res => res).catch(err => err);
-        if (response.status !== 200) {
+       // console.log("test",email,password)
+        const response = await axios.post(`${URL}/login`, { "email": email, "password": password }).then(res => res).catch(err => err);
+        if (response.status !== 201) {
             return null;
         }
-        localStorage.setItem('token', response.headers['x-auth-token']);
-        return user.value = response.data.user;
+      
+      //  console.log(response.headers)
+        localStorage.setItem('token', JSON.stringify({ jwt : response.headers['authorization'], user : response.data}));
+        
+        return user.value = response.data;
+        
     }
     else {
         return null;
@@ -52,7 +59,7 @@ async function connect(email, password) {
 // recupération du token qui a été stocké pour connecter automatiquement le user
 async function autoConnect() {
     if (localStorage.getItem('token')) {
-        const response = await axios.post('http://localhost:3001/moncompte').then(res => res).catch(err => err);
+        const response = await axios.post('http://localhost:3001/login').then(res => res).catch(err => err);
         if (response.status !== 200) {
             localStorage.removeItem('token');
             return null;
