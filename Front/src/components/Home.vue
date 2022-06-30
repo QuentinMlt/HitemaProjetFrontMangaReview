@@ -36,6 +36,12 @@ onMounted(async () => {
     </div>
 
 
-
+    <div id="block_white"></div>
     
 </template>
+
+<style>
+#block_white {
+    height: 200px;
+}
+</style>
