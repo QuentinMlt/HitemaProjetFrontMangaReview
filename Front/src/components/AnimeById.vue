@@ -123,7 +123,7 @@ async function AddComment() {
                 <div class="card-body">
                     <h4 class="card-title h5 h4-sm">{{comment.authorId.name}}</h4>
                     <p class="card-text">{{comment.content}}</p>
-                    <p class="card-subtitle">{{comment.createdAt}}</p>
+                    <p class="card-subtitle">{{Date(comment.createdAt)}}</p>
                 </div>
             </div><hr>
             </div>
