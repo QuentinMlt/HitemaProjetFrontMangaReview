@@ -1,6 +1,17 @@
 <script setup>
-</script>
+import {useUserStore} from "@/services/userstore";
+import {ref, onMounted} from 'vue'
 
+const userInfo = ref("")
+
+onMounted(() => {
+  console.log("userInfo 1")
+const storeToken = JSON.parse(localStorage.getItem('token'));
+userInfo.value = storeToken
+ 
+})
+
+</script>
 <template>
   <header class="nav-header">
     <div class="container navbar-container">
@@ -45,14 +56,19 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link">
+              <a class="nav-link" v-if="!userInfo">
                 <router-link class="navbar-brand" :to="{name: 'login'}"><b>Sign in</b></router-link>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link">
+              <a class="nav-link" v-if="!userInfo">
                 <router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link>
               </a>
+            </li>
+            <li class="nav-item" v-if="userInfo">
+              <span class="navbar-brand">
+                  <b class="navbar-brand"> Hello {{userInfo.user.username}} !!!</b>
+              </span>   
             </li>
           </ul>
         </div>
