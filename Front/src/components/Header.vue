@@ -15,10 +15,8 @@ function clickDisconnect(){
 
 
 onMounted(() => {
-  console.log("userInfo 1")
 const storeToken = JSON.parse(localStorage.getItem('token'));
 userInfo.value = storeToken
- 
 
 })
 
@@ -79,12 +77,12 @@ userInfo.value = storeToken
                 <router-link class="navbar-brand" :to="{name: 'register'}"><b>Sign up</b></router-link>
               </a>
             </li>
-            <li class="nav-item" v-if="userinfo && userInfo.isAdmin === false">
+            <li class="nav-item" v-if="userInfo && userInfo.user.isAdmin === false">
               <a class="nav-link">
                 <router-link class="navbar-brand" :to="{name: 'account'}"><b>Account</b></router-link>
               </a>
             </li>
-            <li class="nav-item" v-if="userinfo && userInfo.isAdmin === true">
+            <li class="nav-item" v-if="userInfo && userInfo.user.isAdmin === true">
               <a class="nav-link">
                 <router-link class="navbar-brand" :to="{name: 'dashboard'}"><b>dashboard</b></router-link>
               </a>
