@@ -1,22 +1,17 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import {useMangaStore} from "@/services/mangaStore";
-
 const {getMangaOrAnimeList} = useMangaStore();
-
 const mangasList = ref([]);
 const newMangasList = ref([]);
 const test = ref([])
-
 // on component creation
 onMounted(async () => {
   let mangasData = await getMangaOrAnimeList();
   mangasList.value = mangasData.filter(function (el) {return el.type == "Manga"});
   newMangasList.value = mangasList.value;
+  console.log(newMangasList.Value)
   })
-
-
-
 //filter manga by letter
 async function filterByLetter(letter) {
     if(letter == "#") 
@@ -26,11 +21,8 @@ async function filterByLetter(letter) {
     else {
          newMangasList.value =  mangasList.value.filter(function (el) {return el.name[0] == letter});
     }
-
 }
-
 const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-
 </script>
 
 <template>
@@ -39,7 +31,7 @@ const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O
 
     <div class="rounded p-5" id="container">
         <h2 id="title">Mangas List</h2><br>
-        <router-link :to="{name: 'addMangaOrAnime'}">Add one</router-link>
+        <router-link class="btn btn-success mb-1" :to="{name: 'addMangaOrAnime'}">Add one</router-link>
         <div class="container-sm rounded p-2 section-block">
             <h5>Categories : </h5>
             <hr>
@@ -73,10 +65,7 @@ const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O
 #title {
     color: orange;
 }
-
 .card-img-overlay {
     box-shadow: inset 0px 50px 33px 0 #000;
 }
-
-
 </style>
