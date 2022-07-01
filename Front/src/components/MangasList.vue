@@ -41,7 +41,7 @@ const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O
                 </li>
             </ul>
         </div>
-        <div class="row" id="listContainer"> <!-- Display -->
+        <div class="row" id="listContainer"> <!-- Display MANGA -->
                 <div v-for="(manga, index) in newMangasList" :key="manga._id" class="col-sm-3 mt-3">
                     <router-link :to="{name: 'mangaById', params: { id: manga._id }}">
                         <div class="card bg-dark text-white thumbnail">

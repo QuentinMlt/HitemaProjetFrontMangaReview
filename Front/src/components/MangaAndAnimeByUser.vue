@@ -9,11 +9,14 @@ const MangaAnime = ref("")
 const userInfo = ref("")
 
 onMounted(async () => {
+    //GET USER
     const storeToken = JSON.parse(localStorage.getItem('token'));
     userInfo.value = storeToken
+    //GET HIS MANGANIME
   MangaAnime.value = await getMangaOrAnimeByUser(userInfo.value.user._id);
 })
 
+//DELETE THE MANGANIME
 async function deleteMangAnime(id) {
     await deleteMangaOrAnime(id);
 }
@@ -25,7 +28,7 @@ async function deleteMangAnime(id) {
 
 <h5 class="mt-2">Mangas and Animes</h5>
 
-<div v-for="entity in MangaAnime">
+<div v-for="entity in MangaAnime"><!-- DISPLAY MANGANIME-->
     <div class="card flex-row"><img class="card-img-left img_card ms-2" :src="entity.imageUrl"/>
         <div class="card-body">
             <h4 class="card-title h5 h4-sm">{{entity.name}}</h4>

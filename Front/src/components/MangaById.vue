@@ -23,15 +23,19 @@ const average = ref("");
 const list = ref([]);
 
 onMounted(async () => {
+    //GET CONNECTED USER
     const storeToken = JSON.parse(localStorage.getItem('token'));
     userInfo.value = storeToken
     
     const route = useRoute();
     mangaId.value = route.params.id;
+    //GET MANGA
     manga.value = await getMangaOrAnimeById(mangaId.value);
     
+    //GET REVIEW OF CONNECTED USER
     connectedUserRating.value = manga.value.reviews.filter(el => el.authorId._id == userInfo.value.user._id)
-
+    
+    //AVERAGE
     for(let i = 0; i< manga.value.reviews.length; i++)
     {
         list.value.push(manga.value.reviews[i].score)
@@ -43,6 +47,8 @@ onMounted(async () => {
     loading.value = false
 })
 
+
+//get average on an array of integer
 function ArrayAvg(myArray) {
     var i = 0, summ = 0, ArrayLen = myArray.length;
     while (i < ArrayLen) {
@@ -51,7 +57,9 @@ function ArrayAvg(myArray) {
     return summ / ArrayLen;
 }
 
+//set a review
 async function setReview() {
+    //VALIDATION
    const scheme = Joi.object({
             score: Joi.number().integer().min(0).max(5).required(),
             manganimeId: Joi.string().required()
@@ -71,11 +79,14 @@ async function setReview() {
         else{
             console.log("Reussi");
             await putReview(payload)
+            //SEND TO SERVICE
         }
     
 }
 
+//ADD A COMMENT TO MANGA
 async function AddComment() {
+    //VALIDATION
     const scheme = Joi.object({
             content: Joi.string().min(4).max(300).required(),
             manganimeId: Joi.string().required()
@@ -95,6 +106,7 @@ async function AddComment() {
         else{
             console.log("Reussi");
             await postComment(payload)
+            //SEND TO SERVICE
             
         }
 }

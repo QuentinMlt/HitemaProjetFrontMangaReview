@@ -94,7 +94,7 @@ async function AddComment() {
                 <h4>Description :</h4><br>
                 <p>{{anime.description}}</p>
                 <div class="row mb-2">
-                    <p class="col-sm-6">Reviews : {{anime.reviews.length}} reviews | Average : {{}}</p>
+                    <p class="col-sm-6">Reviews : {{anime.reviews.length}} reviews | Average : {{average}}/5</p>
                     <p class="col-sm-6">Comments : {{anime.comments.length}} comments</p>
                     <star-rating @click="setReview()" v-model:rating="rating" v-bind:star-size="30"></star-rating>
                 </div>

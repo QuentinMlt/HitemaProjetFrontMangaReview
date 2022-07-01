@@ -22,7 +22,7 @@ onMounted(async () => {
 })
 
 
-
+//ADD CATEGORY TO MANGANIME
 function addCategory() {
     if(!categoriesList.value.includes(category.value)) {
         categoriesList.value.push(category.value);
@@ -32,11 +32,15 @@ function addCategory() {
     } 
 }
 
+//DELETE CATEGORY
 function deleteCategory(name) {
     categoriesList.value.pop(name);
 }
 
+
+
 async function submitForm() {
+    //VALIDATION
     const scheme = Joi.object({
             name: Joi.string().min(2).max(100).required(),
             description: Joi.string().min(10).max(500).required(),
@@ -62,13 +66,14 @@ async function submitForm() {
         else{
             console.log("Reussi");
             await addMangaOrAnime(payload);
+            //SEND TO SERVICE
         }
 }
 
 </script>
 
 <template>
-<div class="login-form">    
+<div class="login-form">   <!--FORM--> 
     
 		<div class="avatar"><img class="card-img " src="https://cdn.mangakawaii.pics/uploads/cdnimages/open-book.svg"/></div>
     	<h4 class="modal-title">Add your Manga / Anime</h4>

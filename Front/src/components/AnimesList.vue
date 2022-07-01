@@ -10,6 +10,7 @@ const test = ref([])
 
 // on component creation
 onMounted(async () => {
+    //GET ANIMES
   let animesData = await getMangaOrAnimeList();
    
   animesList.value = animesData.filter(function (el) {return el.type == "Anime"});
@@ -46,7 +47,7 @@ const alphabet = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O
         <div class="container-sm rounded p-2 section-block">
             <h5>Categories : </h5>
             <hr>
-            <ul class="nav nav-fill mt-3">
+            <ul class="nav nav-fill mt-3"><!--SEARCH COMPONENT-->
                 <li  v-for="letter in alphabet" class="nav-item px-sm-0 px-2">
                     <button class="btn alphabet" @click="filterByLetter(letter)">{{letter}}</button>
                 </li>

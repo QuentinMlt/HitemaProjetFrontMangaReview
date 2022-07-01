@@ -10,8 +10,10 @@ const loading = ref(false);
 const userInfo = ref("")
 
 onMounted(async () => {
+    //GET USER
     const storeToken = JSON.parse(localStorage.getItem('token'));
     userInfo.value = storeToken
+    //GET HIS REVIEWS
   review.value = await getReviewsByUser(userInfo.value.user._id);
   loading.value = true;
 })
@@ -20,7 +22,7 @@ onMounted(async () => {
 
 <template>
 
-<h5 class="mt-2"  v-if="loading">Reviews</h5>
+<h5 class="mt-2"  v-if="loading">Reviews</h5><!--DISPLAY REVIEW-->
 
 <div v-for="entity in review" v-if="loading">
     <div class="card flex-row"><img class="card-img-left img_card ms-2" :src="entity.manganimeId.imageUrl"/>

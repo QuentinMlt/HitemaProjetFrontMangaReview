@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ref } from "vue";
 
-const URL = "http://localhost:3001"
+const URL = "http://193.70.1.159:3001"
 axios.interceptors.request.use(function (config) {
    // config.headers['x-auth-token'] = localStorage.getItem('token') || "";
    config.headers['authorization'] = JSON.parse(localStorage.getItem('token')).jwt || "";
@@ -23,7 +23,7 @@ function useUserStore() {
 async function inscription(email, username, password) {
     if (email && password && username) {
         console.log("register !")
-        const response = await axios.post(`${URL}/users/register`, { "email": email, "password": password, "username": username }).then(res => res).catch(err => err);
+        const response = await axios.post(`http://193.70.1.159:3001/users/register`, { "email": email, "password": password, "username": username }).then(res => res).catch(err => err);
         if (response.status !== 201) {
             return null;
         }
@@ -39,13 +39,15 @@ async function inscription(email, username, password) {
 // récupération de l'email et le password et on l'envoie vers le back afin de vérifier les données
 async function connect(email, password) {
     if (email && password) {
-       // console.log("test",email,password)
-        const response = await axios.post(`${URL}/login`, { "email": email, "password": password }).then(res => res).catch(err => err);
+       //console.log("test",email,password)
+        const response = await axios.post(`http://193.70.1.159:3001/login`, { "email": email, "password": password }).then(res => res).catch(err => err);
         if (response.status !== 201) {
+            console.log(response)
             return null;
         }
+        
       
-      //  console.log(response.headers)
+        console.log(response.headers)
         localStorage.setItem('token', JSON.stringify({ jwt : response.headers['authorization'], user : response.data}));
         
         return user.value = response.data;
@@ -59,7 +61,7 @@ async function connect(email, password) {
 // recupération du token qui a été stocké pour connecter automatiquement le user
 async function autoConnect() {
     if (localStorage.getItem('token')) {
-        const response = await axios.post('http://localhost:3001/login').then(res => res).catch(err => err);
+        const response = await axios.post('http://193.70.1.159:3001/login').then(res => res).catch(err => err);
         if (response.status !== 200) {
             localStorage.removeItem('token');
             return null;

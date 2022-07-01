@@ -13,6 +13,7 @@ const loading = ref(false)
 
 
 onMounted(async () => {
+    //GET BEST MANGANIME
   MangaAnime.value = await get10BestMangaAndAnime();
   console.log(MangaAnime.value[0])
   loading.value = true
@@ -22,7 +23,7 @@ onMounted(async () => {
 
 <template>
     <h3>TOP 10 MANGAS AND ANIMES</h3>
-    <div class="row">
+    <div class="row"><!--DISPLAY MANGANIME-->
         <div v-for="manga in MangaAnime" :key="manga._id" class="col-sm-3 mt-3" v-if="loading">
             <router-link :to="{name: 'mangaById', params: { id: manga.manganimeId._id }}">
                 <div class="card bg-dark text-white thumbnail">

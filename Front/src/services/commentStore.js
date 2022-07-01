@@ -5,14 +5,14 @@ function useCommentStore(){
 }
 
 async function postComment(comment) {
-    const response = await axios.post("http://localhost:3001/comments", {"content": comment.content, "manganimeId": comment.manganimeId}).then(res => res).catch(err => err);
+    const response = await axios.post("http://193.70.1.159:3001/comments", {"content": comment.content, "manganimeId": comment.manganimeId}).then(res => res).catch(err => err);
     if (response.status !== 201) {
         return null;
     }
 }
 
 async function deleteComment(commentId) {
-    const response = await axios.delete("http://localhost:3001/comments/" + commentId).then(res => res).catch(err => err);
+    const response = await axios.delete("http://193.70.1.159:3001/comments/" + commentId).then(res => res).catch(err => err);
     if (response.status !== 200) {
         return null;
     }
@@ -20,7 +20,7 @@ async function deleteComment(commentId) {
 
 async function getCommentsByUser(userId) {
     
-    const response = await axios.get("http://localhost:3001/comments/author/" + userId).then(res => res).catch(err => err);
+    const response = await axios.get("http://193.70.1.159:3001/comments/author/" + userId).then(res => res).catch(err => err);
     if (response.status !== 200) {
         return null;
     }
