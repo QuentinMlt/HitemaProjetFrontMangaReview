@@ -31,7 +31,7 @@ onMounted(async () => {
     mangaId.value = route.params.id;
     //GET MANGA
     manga.value = await getMangaOrAnimeById(mangaId.value);
-    
+    console.log(manga.value.reviews)
     //GET REVIEW OF CONNECTED USER
     connectedUserRating.value = manga.value.reviews.filter(el => el.authorId._id == userInfo.value.user._id)
     
@@ -41,8 +41,9 @@ onMounted(async () => {
         list.value.push(manga.value.reviews[i].score)
     }
     average.value = ArrayAvg(list.value)
-
-    if(connectedUserRating.value) {rating.value = connectedUserRating.value[0].score}
+    
+    console.log(connectedUserRating)
+    
 
     loading.value = false
 })

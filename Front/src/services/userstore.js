@@ -4,7 +4,13 @@ import { ref } from "vue";
 const URL = "http://193.70.1.159:3001"
 axios.interceptors.request.use(function (config) {
    // config.headers['x-auth-token'] = localStorage.getItem('token') || "";
-   config.headers['authorization'] = JSON.parse(localStorage.getItem('token')).jwt || "";
+   
+   if(localStorage.getItem('token')) {
+    config.headers['authorization'] = JSON.parse(localStorage.getItem('token')).jwt || "";
+   }
+   else {
+    config.headers['authorization'] = localStorage.getItem('token') || "";
+   }
 
     return config;
 });

@@ -50,7 +50,6 @@ async function getMangaOrAnimeById(id) {
 // add a manganime
 async function addMangaOrAnime(entity)
 {
-    console.log(token)
     const response = await axios.post("http://193.70.1.159:3001/manganime", {"name": entity.name,"description": entity.description, "type": entity.type, "imageUrl": entity.imageUrl, "genres": entity.categoriesList}).then(res => res).catch(err => err);
     if (response.status !== 201) {
         return null;
